@@ -44,21 +44,25 @@
         }
 
         .site-header {
-            position: absolute;
-            z-index: 1;
+            position: fixed;
+            z-index: 1000;
             top: 0;
             right: 0;
             left: 0;
-            color: #f5fbf7;
+            border-bottom: 1px solid rgb(23 35 33 / 9%);
+            background: rgb(245 247 242 / 82%);
+            color: var(--ink);
+            box-shadow: 0 8px 30px rgb(16 34 31 / 8%);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
         }
 
         .nav {
             display: flex;
-            min-height: 78px;
+            min-height: 72px;
             align-items: center;
             justify-content: space-between;
             gap: 24px;
-            border-bottom: 1px solid rgb(255 255 255 / 15%);
         }
 
         .brand {
@@ -75,21 +79,51 @@
         }
 
         .nav-links a {
-            color: #d2dfd9;
+            display: inline-flex;
+            min-height: 38px;
+            align-items: center;
+            padding: 0 12px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            color: #40524b;
             font-size: 0.9rem;
+            font-weight: 650;
             text-decoration: none;
-            transition: color 160ms ease;
+            transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
         }
 
         .nav-links a:hover,
         .nav-links a:focus-visible {
-            color: #ffffff;
+            border-color: rgb(22 122 98 / 28%);
+            background: rgb(255 255 255 / 62%);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            border-color: var(--accent);
+            background: rgb(22 122 98 / 9%);
+            color: var(--accent-dark);
+            box-shadow: 0 0 0 3px rgb(22 122 98 / 9%);
+        }
+
+        .brand:hover,
+        .brand:focus-visible {
+            color: var(--accent);
+        }
+
+        .brand.active {
+            padding: 6px 10px;
+            border: 1px solid var(--accent);
+            border-radius: 999px;
+            background: rgb(22 122 98 / 9%);
+            color: var(--accent-dark);
         }
 
         .hero {
             overflow: hidden;
             position: relative;
-            padding: 150px 0 100px;
+            padding: 170px 0 100px;
             background:
                 radial-gradient(ellipse at 78% 28%, rgb(47 143 111 / 34%), transparent 33%),
                 linear-gradient(125deg, #10221f 0%, #16382f 58%, #1a5141 100%);
@@ -166,13 +200,15 @@
             font-size: 0.92rem;
             font-weight: 800;
             text-decoration: none;
-            transition: background 160ms ease, transform 160ms ease;
+            box-shadow: 0 8px 20px rgb(0 0 0 / 14%);
+            transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
         }
 
         .button:hover,
         .button:focus-visible {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             background: #a4e5ca;
+            box-shadow: 0 12px 24px rgb(0 0 0 / 20%);
         }
 
         .portrait {
@@ -195,11 +231,29 @@
 
         section {
             padding: 82px 0;
+            scroll-margin-top: 88px;
         }
 
         .section-heading {
             max-width: 650px;
             margin-bottom: 34px;
+        }
+
+        .section-heading h2 {
+            position: relative;
+            width: fit-content;
+            padding-bottom: 10px;
+        }
+
+        .section-heading h2::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 52px;
+            height: 3px;
+            border-radius: 999px;
+            background: var(--accent);
+            content: "";
         }
 
         .section-heading .eyebrow {
@@ -244,6 +298,14 @@
             border: 1px solid var(--line);
             border-radius: 12px;
             background: var(--surface);
+            box-shadow: 0 4px 14px rgb(23 35 33 / 4%);
+            transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .fact:hover {
+            transform: translateY(-3px);
+            border-color: rgb(22 122 98 / 35%);
+            box-shadow: 0 12px 24px rgb(23 35 33 / 9%);
         }
 
         .fact strong {
@@ -264,7 +326,7 @@
 
         .partner-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 12px;
         }
 
@@ -272,6 +334,8 @@
             display: grid;
             min-height: 88px;
             place-items: center;
+            align-content: center;
+            gap: 6px;
             padding: 14px;
             border: 1px solid #d9e3db;
             border-radius: 10px;
@@ -280,6 +344,27 @@
             font-size: 0.9rem;
             font-weight: 750;
             text-align: center;
+            box-shadow: 0 4px 14px rgb(23 35 33 / 4%);
+            transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .partner:hover {
+            transform: translateY(-4px);
+            border-color: rgb(22 122 98 / 35%);
+            box-shadow: 0 14px 28px rgb(23 35 33 / 10%);
+        }
+
+        .partner-link {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .partner-link:hover,
+        .partner-link:focus-visible {
+            color: var(--accent-dark);
+            text-decoration: underline;
         }
 
         .skills-grid {
@@ -293,6 +378,15 @@
             border: 1px solid var(--line);
             border-radius: 14px;
             background: var(--surface);
+            box-shadow: 0 5px 18px rgb(23 35 33 / 5%);
+            transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .skill-card:hover,
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgb(22 122 98 / 35%);
+            box-shadow: 0 16px 32px rgb(23 35 33 / 11%);
         }
 
         .skill-card {
@@ -400,11 +494,14 @@
             font-size: 0.88rem;
             font-weight: 700;
             text-decoration: none;
+            transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
         }
 
         .social-links a:hover,
         .social-links a:focus-visible {
+            transform: translateY(-2px);
             border-color: var(--accent);
+            background: #e4f4eb;
         }
 
         .contact {
@@ -451,24 +548,26 @@
 
         @media (max-width: 760px) {
             .nav {
-                min-height: 70px;
+                min-height: 72px;
                 align-items: flex-start;
                 flex-direction: column;
                 justify-content: center;
-                gap: 8px;
-                padding: 12px 0;
+                gap: 5px;
+                padding: 9px 0;
             }
 
             .nav-links {
-                gap: 8px 16px;
+                gap: 4px;
             }
 
             .nav-links a {
-                font-size: 0.82rem;
+                min-height: 30px;
+                padding: 0 5px;
+                font-size: 0.78rem;
             }
 
             .hero {
-                padding: 155px 0 76px;
+                padding: 160px 0 76px;
             }
 
             .hero-content,
@@ -610,27 +709,23 @@
                     
                 </div>
                 <div class="partner-grid">
-                    <div class="partner">PAWANDE-SERVICES         
-                        <a href="https://www.pawande-services.com/"
-                        target="_blank"
-                        class="partner-link">
+                    <div class="partner">
+                        PAWANDE-SERVICES
+                        <a class="partner-link" href="https://www.pawande-services.com/" target="_blank" rel="noopener noreferrer">
                             🌐 Visiter le site
                         </a></div>
-                    <div class="partner">Online_Achat
-                        <a href="https://online-achat.com/"
-                        target="_blank"
-                        class="partner-link">
+                    <div class="partner">
+                        Online_Achat
+                        <a class="partner-link" href="https://online-achat.com/" target="_blank" rel="noopener noreferrer">
                             🌐 Visiter le site
                         </a>
                     </div>
-                    <div class="partner">ITem E-Market
-                        <a href="https://item-e-market.com/"
-                        target="_blank"
-                        class="partner-link">
+                    <div class="partner">
+                        ITem E-Market
+                        <a class="partner-link" href="https://item-e-market.com/" target="_blank" rel="noopener noreferrer">
                             🌐 Visiter le site
-                        </a></div>
+                        </a>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -716,7 +811,7 @@
                         </div>
                     </article>
                     <article class="project-card">
-                        <div class="project-art" aria-hidden="true">L2</div>
+                        <div class="project-art" aria-hidden="true">Trans-colis</div>
                         <div class="project-body">
                             <span class="project-type">Logiciel de bureau</span>
                             <h3>Gestion</h3>
@@ -769,5 +864,48 @@
             <p>© <span id="year">2026</span> Jabir DINGA. Portfolio personnel.</p>
         </div>
     </footer>
+    <script>
+        const navLinks = [...document.querySelectorAll('.site-header a[href^="#"]')];
+        const sections = [...document.querySelectorAll('main section[id]')];
+        let scrollUpdateScheduled = false;
+
+        function updateActiveNavigation() {
+            const header = document.querySelector('.site-header');
+            const marker = header.getBoundingClientRect().bottom + 20;
+            const currentSection = sections.reduce((current, section) => {
+                return section.getBoundingClientRect().top <= marker ? section : current;
+            }, sections[0]);
+            const currentIndex = sections.indexOf(currentSection);
+            const isAtPageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+            const activeLink = isAtPageBottom ? navLinks[navLinks.length - 1] : [...navLinks].reverse().find(link => {
+                const targetIndex = sections.findIndex(section => section.id === link.hash.slice(1));
+                return targetIndex !== -1 && targetIndex <= currentIndex;
+            }) || navLinks[0];
+
+            navLinks.forEach(link => {
+                const isActive = link === activeLink;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
+
+        function scheduleNavigationUpdate() {
+            if (!scrollUpdateScheduled) {
+                scrollUpdateScheduled = true;
+                requestAnimationFrame(() => {
+                    updateActiveNavigation();
+                    scrollUpdateScheduled = false;
+                });
+            }
+        }
+
+        window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
+        window.addEventListener('resize', scheduleNavigationUpdate);
+        updateActiveNavigation();
+    </script>
 </body>
 </html>
