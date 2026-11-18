@@ -217,16 +217,17 @@
             aspect-ratio: 1;
             place-items: center;
             justify-self: end;
+            overflow: hidden;
             border: 1px solid rgb(255 255 255 / 28%);
             border-radius: 50%;
-            background:
-                radial-gradient(circle at 35% 30%, rgb(139 214 183 / 40%), transparent 55%),
-                rgb(255 255 255 / 7%);
-            color: #d8f3e6;
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -0.08em;
             box-shadow: 0 24px 80px rgb(0 0 0 / 18%);
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
         }
 
         section {
@@ -654,7 +655,9 @@
                     </p>
                     <a class="button" href="#projets">Découvrir mes projets <span aria-hidden="true">&nbsp;↘</span></a>
                 </div>
-                <div class="portrait" aria-label="Emplacement réservé à votre photo">Blackface</div>
+                <div class="portrait">
+                    <img src="assets/portrait.webp" alt="Portrait de Jabir Dinga">
+                </div>
             </div>
         </section>
 
